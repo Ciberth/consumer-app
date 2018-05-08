@@ -10,5 +10,5 @@ provides:
   website:
     interface: http
 requires:
-  gdb:
+  generic-database:
     interface: generic-database
