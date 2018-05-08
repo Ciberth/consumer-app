@@ -1,0 +1,14 @@
+name: consumer-app
+summary: Consumer application (php pages/webapp)
+maintainer: student <student@student-VirtualBox>
+description: |
+  Todo 
+tags:
+  - ops
+subordinate: false
+provides:
+  website:
+    interface: http
+requires:
+  gdb:
+    interface: generic-database
