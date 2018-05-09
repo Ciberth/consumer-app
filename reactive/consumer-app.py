@@ -6,17 +6,18 @@ from subprocess import call
 from charmhelpers.core import host
 from charmhelpers.core.hookenv import log, status_set, config
 from charmhelpers.core.templating import render
-from charms.reactive import when, when_not, set_flag, clear_flag, when_file_changed
+from charms.reactive import when, when_not, set_flag, clear_flag, when_file_changed, endpoint_from_flag
+from charms.reactive import Endpoint
 
 @when('apache.available')
 def finishing_up_setting_up_sites():
     host.service_reload('apache2')
     set_flag('apache.start')
-
-@when('apache.start')
-def ready():
-    host.service_reload('apache2')
-    status_set('active', 'apache ready')
+# todo deze in commentaar - waiting for db vangt dit op
+#@when('apache.start')
+#def ready():
+#    host.service_reload('apache2')
+#    status_set('active', 'apache ready')
 
 # todo here @when_not('generic-database.concrete')
 # for when a new consumer app connects to a generic database that is not generic anymore
@@ -29,6 +30,7 @@ def request_db():
 @when('apache.start')
 @when_not('endpoint.generic-database.connected')
 def waiting_for_db():
+    host.service_reload('apache2')
     status_set('maintenance', 'Waiting for generic database relation')
 
 
