@@ -58,13 +58,14 @@ def pgsql_render_config():
     
     pgsql = endpoint_from_flag('endpoint.generic-database.postgresql.available')
 
-    render_template('pgsql-config.j2', '/var/consumer-app/test.html', {
+    render('pgsql-config.j2', '/var/www/consumer-app/test.html', {
         'gdb_host' : pgsql.host(),
         'gdb_port' : pgsql.port(),
         'gdb_dbname' : pgsql.databasename(),
         'gdb_user' : pgsql.user(),
         'gdb_password' : pgsql.password(),
     })
+    status_set('maintenance', 'Rending config file')
     set_flag('endpoint.generic-database.connected')
     set_flag('restart-app')
 
