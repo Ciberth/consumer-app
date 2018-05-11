@@ -39,6 +39,7 @@ def waiting_for_db():
 def request_db():
     endpoint = endpoint_from_flag('endpoint.generic-database.joined')
     endpoint.request('postgresql')
+    #endpoint.connect('db_name_a')
     status_set('maintenance', 'Requesting postgresql')
 
 
