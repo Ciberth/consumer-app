@@ -65,7 +65,7 @@ def pgsql_render_config():
         'gdb_user' : pgsql.user(),
         'gdb_password' : pgsql.password(),
     })
-    status_set('maintenance', 'Rending config file')
+    status_set('maintenance', 'Rendering config file')
     set_flag('endpoint.generic-database.connected')
     set_flag('restart-app')
 
